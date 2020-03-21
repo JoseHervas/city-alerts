@@ -1,7 +1,9 @@
 const secrets = require('../config/secrets');
 const mongoose = require('mongoose');
 const { validationResult } = require('express-validator');
-const users = require('../models/users.model')
+const users = require('../models/users.model');
+const bcrypt = require('bcrypt');
+
 
 mongoose.connect(secrets.mongo_URL, {
     useNewUrlParser: true,
@@ -17,10 +19,11 @@ exports.insertUser = async (req, res) => {
     //validar el body
     const bodyErrors = validationResult(req);
     if (bodyErrors.isEmpty()) {
+        const hash = await bcrypt.hash(req.body.password, 14)
         const newUser = new users({
             "_id": mongoose.Types.ObjectId(),
             "username": req.body.username,
-            "hash": req.body.hash,
+            "hash": hash,
             "email": req.body.email
         });
         try {
