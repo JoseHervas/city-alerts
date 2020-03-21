@@ -4,13 +4,11 @@ const { validationResult } = require('express-validator');
 const users = require('../models/users.model');
 const bcrypt = require('bcrypt');
 
-
 mongoose.connect(secrets.mongo_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false
 });
-
 
 //CRRUD de usuario
 
@@ -51,5 +49,18 @@ exports.insertUser = async (req, res) => {
         }
     } else {
         res.status(400).send({ "error": "Body mal formado" })
+    }
+}
+
+exports.getUserById = async (req, res) => {
+    const _id = req.params._id;
+    try {
+        const result = await users.findById(_id);
+        res.send(result)
+    } catch (error) {
+        res.send({
+            "error": "No se ha podido encontrar al usuario",
+            "causa": error
+        })
     }
 }
