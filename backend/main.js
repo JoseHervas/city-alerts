@@ -13,15 +13,15 @@ server.use(cookieParser());
 
 server.post('/user', mainController.insertUser);
 
-server.get('/user/:_id', mainController.getUserById);
+server.get('/user/:_id', authController.validateToken, mainController.getUserById);
 
 server.get('/users', authController.validateToken , mainController.getAllUsers);
 
-server.put('/user', mainController.updateUser);
+server.put('/user', authController.validateToken, mainController.updateUser);
 
-server.delete('/user/:_id', mainController.deleteUser);
+server.delete('/user/:_id', authController.validateToken, mainController.deleteUser);
 
-server.post("/login", authController.login)
+server.post("/login", authController.login);
 
 const PORT = process.env.PORT;
 
