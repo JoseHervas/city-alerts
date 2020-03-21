@@ -1,7 +1,7 @@
 const express = require('express');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
-const mainController = require('./controllers/main.controller');
+const mainController = require('./controllers/users.controller');
 const cookieParser = require('cookie-parser');
 const authController = require('./controllers/auth.controller');
 
