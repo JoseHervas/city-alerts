@@ -1,1 +1,8 @@
-<p>new-alert works!</p>
+
+<h1>Crear alerta</h1>
+<form (ngForm)="alertForm" #myForm="ngForm" (ngSubmit)="postNewAlert()">
+    Calle: <input type="text" [(ngModel)]="calle" name="calle">
+    <br>
+    Tipo de incidencia: <input type="text" [(ngModel)]="tipoIncidencia" name="incidencia">
+    <button type="submit">Send</button>
+</form>

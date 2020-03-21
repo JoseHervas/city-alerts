@@ -10,15 +10,16 @@ const cors = require('cors');
 const server = express();
 
 server.use(helmet());
+server.use((req, res, next) => {
+    res.header("Access-Control-Allow-Credentials", true);
+    next();
+});
 server.use(bodyParser.json());
 server.use(cookieParser());
 server.use(cors({
     "origin": "http://localhost:4200"
 }));
-server.use((req, res, next) => {
-    res.header("Access-Control-Allow-Credentials", true);
-    next();
-})
+
 
 server.post('/user', mainController.insertUser);
 
