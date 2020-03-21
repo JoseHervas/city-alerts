@@ -114,3 +114,17 @@ exports.updateUser = async (req, res) => {
         res.status(400).send({ "error": "Body mal formado" })
     }
 }
+
+//5.- Delete user
+exports.deleteUser = async (req, res) => {
+    const _id = req.params._id;
+    try {
+        const result = await users.findOneAndDelete(_id);
+        res.send(result)
+    } catch (error) {
+        res.send({
+            "error": "No se ha podido eliminar al usuario",
+            "causa": error
+        })
+    }
+}
