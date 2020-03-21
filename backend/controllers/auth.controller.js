@@ -50,3 +50,20 @@ exports.login = async (req, res) => {
 }
 
 // - validar tokens (mantener abierta sesión)
+exports.validateToken = (req, res, next) => {
+    if (req.cookies["sello"] !== undefined) {
+        jwt.verify(
+            req.cookies["sello"],
+            secrets.jwt_clave,
+            (error, validToken) => {
+                if (validToken) {
+                    next();
+                } else {
+                    res.send({"error": "token no válido"})
+                }
+            }  
+        )
+    } else {
+        res.status(401).send({"error": "usuario no logeado"})
+    }
+}

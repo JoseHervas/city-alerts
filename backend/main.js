@@ -15,7 +15,7 @@ server.post('/user', mainController.insertUser);
 
 server.get('/user/:_id', mainController.getUserById);
 
-server.get('/users', mainController.getAllUsers);
+server.get('/users', authController.validateToken , mainController.getAllUsers);
 
 server.put('/user', mainController.updateUser);
 
