@@ -24,9 +24,9 @@ const alertsSchema = new mongoose.Schema({
         enum: ["robo", "asesinato", "agresion"]
     },
     "user": {
-        ref: "users",
+        ref: "user",
         type: types.ObjectId,
-        autopopulate: true
+        autopopulate: { select: 'username' } 
     }
 })
 

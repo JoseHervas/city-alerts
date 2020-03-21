@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const mainController = require('./controllers/users.controller');
 const cookieParser = require('cookie-parser');
 const authController = require('./controllers/auth.controller');
+const alertsController = require('./controllers/alerts.controller');
 
 const server = express();
 
@@ -22,6 +23,8 @@ server.put('/user', authController.validateToken, mainController.updateUser);
 server.delete('/user/:_id', authController.validateToken, mainController.deleteUser);
 
 server.post("/login", authController.login);
+
+server.post("/alert", alertsController.insertAlert);
 
 const PORT = process.env.PORT;
 
