@@ -1,3 +1,5 @@
 
 <h1>Alertas</h1>
 <button (click)="logout()">Desloggearse</button>
+
+<p *ngFor="let alerta of alertas">{{alerta["calle"]}}</p>

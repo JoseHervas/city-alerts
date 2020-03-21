@@ -20,7 +20,7 @@ export class UserService {
     })
     .subscribe((responseAPI) => {
       if (environment.production === false){
-        document["cookies"] = `sello=${responseAPI["token"]}`
+        document["cookie"] = `sello=${responseAPI["token"]}`
       }
       this.isLoggedIn = true;
       this._router.navigateByUrl("/alerts");
@@ -39,7 +39,7 @@ export class UserService {
   }
 
   delete_cookie(name: string) {
-    document["cookies"] = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    document["cookie"] = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
   }
 
   logout(){
