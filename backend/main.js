@@ -5,12 +5,14 @@ const mainController = require('./controllers/users.controller');
 const cookieParser = require('cookie-parser');
 const authController = require('./controllers/auth.controller');
 const alertsController = require('./controllers/alerts.controller');
+const cors = require('cors');
 
 const server = express();
 
 server.use(helmet());
 server.use(bodyParser.json());
 server.use(cookieParser());
+server.use(cors());
 
 server.post('/user', mainController.insertUser);
 
