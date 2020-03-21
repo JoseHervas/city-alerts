@@ -10,7 +10,9 @@ server.use(bodyParser.json())
 
 server.post('/user', mainController.insertUser);
 
-server.get('/user/:_id', mainController.getUserById)
+server.get('/user/:_id', mainController.getUserById);
+
+server.get('/users', mainController.getAllUsers);
 
 const PORT = process.env.PORT;
 
