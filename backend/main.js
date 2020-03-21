@@ -6,13 +6,15 @@ const mainController = require('./controllers/main.controller');
 const server = express();
 
 server.use(helmet());
-server.use(bodyParser.json())
+server.use(bodyParser.json());
 
 server.post('/user', mainController.insertUser);
 
 server.get('/user/:_id', mainController.getUserById);
 
 server.get('/users', mainController.getAllUsers);
+
+server.put('/user', mainController.updateUser)
 
 const PORT = process.env.PORT;
 
