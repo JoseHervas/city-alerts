@@ -47,3 +47,16 @@ exports.insertAlert = (req, res) => {
         res.send({"error": "Body mal formado"})
     }
 }
+
+// 2.- Ver todas las alertas
+exports.getAllAlerts = async (req, res) => {
+    try {
+        const result = await alerts.find();
+        res.send(result)
+    } catch (error) {
+        res.send({
+            "error": "No se ha podido encontrar ninguna alerta",
+            "causa": error
+        })
+    }
+}
